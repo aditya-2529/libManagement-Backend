@@ -1,12 +1,9 @@
 package com.project.library.Library;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.project.library.Library.model.Employee;
-import com.project.library.Library.repository.EmployeeRepository;
 
 @SpringBootApplication
 public class LibraryManagementApplication implements CommandLineRunner{
@@ -15,17 +12,20 @@ public class LibraryManagementApplication implements CommandLineRunner{
 		SpringApplication.run(LibraryManagementApplication.class, args);
 	}
 
-	@Autowired
-	private EmployeeRepository empR;
+	// @Autowired
+	// private EmployeeRepository empR;
+	// @Autowired
+	// private BooksRepository	booksRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
-		Employee emp1 = new Employee();
-		emp1.setFirstName("Adi");
-		emp1.setLastName("Ranjan");
-		emp1.setEmailId("ranjan.aditya@gmail.com");
-		emp1.setId(111);
-		empR.save(emp1);
+		// Books emp1 = new Books();
+		// emp1.setName("Adi");
+		// emp1.setTitle("Ranjan");
+		// emp1.setCustid(4555l);
+		// emp1.setEmpid(4666l);
+		// booksRepository.save(emp1);
+		
 	}
 
 }

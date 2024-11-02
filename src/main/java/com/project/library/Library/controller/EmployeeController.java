@@ -30,10 +30,17 @@ public class EmployeeController {
     }
 
     // build get employee by id REST API
-    @GetMapping("{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable  long id){
-        Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + id));
+    // @GetMapping("{id}")
+    // public ResponseEntity<Employee> getEmployeeById(@PathVariable  long id){
+    //     Employee employee = employeeRepository.findById(id)
+    //             .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + id));
+    //     return ResponseEntity.ok(employee);
+    // }
+
+    @GetMapping("{userName}")
+    public ResponseEntity<Employee> getUserName(@PathVariable String userName){
+        Employee employee = employeeRepository.un(userName)
+        .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with userName:" + userName));
         return ResponseEntity.ok(employee);
     }
 
@@ -43,9 +50,9 @@ public class EmployeeController {
         Employee updateEmployee = employeeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
 
-        updateEmployee.setFirstName(employeeDetails.getFirstName());
-        updateEmployee.setLastName(employeeDetails.getLastName());
-        updateEmployee.setEmailId(employeeDetails.getEmailId());
+        updateEmployee.setName(employeeDetails.getName());
+        updateEmployee.setPassword(employeeDetails.getPassword());
+        updateEmployee.setUserName(employeeDetails.getUserName());
 
         employeeRepository.save(updateEmployee);
 

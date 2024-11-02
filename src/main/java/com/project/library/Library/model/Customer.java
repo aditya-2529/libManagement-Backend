@@ -12,18 +12,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="employees")
-public class Employee {
+@Table(name="customer")
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "name")
+    @Column(name="name")
     private String name;
 
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name="username")
+    private String username;
 
-    @Column(name = "password")
+    @Column(name="password")
     private String password;
 }
