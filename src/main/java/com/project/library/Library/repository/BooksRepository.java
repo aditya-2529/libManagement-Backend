@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface BooksRepository extends JpaRepository<Books, Long> {
@@ -13,7 +14,10 @@ public interface BooksRepository extends JpaRepository<Books, Long> {
     Optional<Books> findCustomer(@Param("adp") long adp);
 
     @Query(nativeQuery = true,value = "select * from books where empid = :empid")
-    Optional<Books> fd(@Param("empid") long empid);
+    List<Books> fd(@Param("empid") long empid);
+
+    @Query(nativeQuery = true,value = "select * from books where empid = :empid and name = :name")
+    Optional<Books> fdi(@Param("empid") long empid,@Param("name") String name);
 
     @Query(nativeQuery = true,value = "select * from books where category= :category")
     Optional<Books> fC(@Param("category") String category);

@@ -37,10 +37,9 @@ public class BooksController {
         return booksRepository.save(Books);
     }
     @GetMapping("/edit/{id}")
-    public ResponseEntity<Books> fd(@PathVariable Long id) {
-        Books books = booksRepository.fd(id)
-        .orElseThrow(() -> new ResourceNotFoundException("Books not exist with id :" + id));
-        return ResponseEntity.ok(books);
+    public List<Books> fd(@PathVariable Long id) {
+        List<Books> books = booksRepository.fd(id);
+        return books;
     }
     @GetMapping("/edit-book/{id}")
     public ResponseEntity<Books> getBooksById(@PathVariable Long id) {
@@ -83,16 +82,16 @@ public class BooksController {
         });
         return ResponseEntity.ok(b);
     }
-    @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deleteBook(@PathVariable long id){
+    @DeleteMapping("{id}/{name}")
+    public ResponseEntity<HttpStatus> deleteBook(@PathVariable long id,@PathVariable String name){
 
-        Books books = booksRepository.fd(id)
+        Books books = booksRepository.fdi(id,name)
                 .orElseThrow(() -> new ResourceNotFoundException("Books not exist with id: " + id));
         DatabaseFile file = databaseFileRepository.fempid(id).orElseThrow(() -> new ResourceNotFoundException("File not exist with empid: " + id));
         booksRepository.delete(books);
         databaseFileRepository.delete(file);
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
 
     }
 }
