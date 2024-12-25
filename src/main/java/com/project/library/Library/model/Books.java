@@ -29,4 +29,7 @@ public class Books {
 
     @Column(name="custid")
     private Long custid;
+
+    @Column(name="category")
+    private String category;
 }

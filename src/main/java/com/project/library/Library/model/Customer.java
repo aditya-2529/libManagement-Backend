@@ -26,4 +26,7 @@ public class Customer {
 
     @Column(name="password")
     private String password;
+
+    @Column(name = "age")
+    private int age;
 }
